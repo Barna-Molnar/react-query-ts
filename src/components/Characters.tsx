@@ -49,7 +49,9 @@ const Characters: FC<CharacterProps> = (props) => {
         console.log(data);
         return data
     }
-    const { data, status } = useQuery<Response>(['CHARACTERS', page], fetchCharacters)
+    const { data, status } = useQuery<Response>(['CHARACTERS', page], fetchCharacters, {
+        keepPreviousData: true
+    })
 
 
 
@@ -64,7 +66,7 @@ const Characters: FC<CharacterProps> = (props) => {
             <div>
 
                 <button disabled={page <= 1} onClick={() => setPage(prev => prev - 1)}>Previus</button>
-                <button onClick={() => setPage(prev => prev + 1)}>Next</button>
+                <button disabled={page >= 42} onClick={() => setPage(prev => prev + 1)}>Next</button>
             </div>
 
         </div>
