@@ -2,16 +2,8 @@ import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import Character from './Character';
-import { type } from 'os';
 
 export interface CharacterProps { };
-
-const DIV = styled.div`
- display: grid;
- grid-template-columns: 1fr 1fr ;
- grid-gap: 4rem;
-`;
-
 interface Response {
     info: any;
     results: CharacterObj[];
@@ -68,13 +60,11 @@ const Characters: FC<CharacterProps> = (props) => {
             {data && data.results.map((character: CharacterObj) => (
                 <Character character={character} key={character.id} />
             ))}
-
             <div>
 
                 <button disabled={page <= 1} onClick={() => setPage(prev => prev - 1)}>Previus</button>
                 <button disabled={!data?.info.next} onClick={() => setPage(prev => prev + 1)}>Next</button>
             </div>
-
         </div>
     );
 };
